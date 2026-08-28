@@ -1,0 +1,21 @@
+Markdown
+# Portfolio Project: Generative AI Trip Planner App (AWS PartyRock)
+
+## 1. Project Overview
+For "The Portfolio: A Generative AI approach", I designed and built an interactive Generative AI application titled "Your Local Friend Trip Planner" powered by AWS PartyRock (Amazon Bedrock). The app helps travelers generate highly customized, local-style travel itineraries and logistical guidance tailored to their budget, travel pace, duration, and personal hobbies.
+
+## 2. System Architecture & Prompt Design
+The application features a multi-widget pipeline that transforms user inputs into structured, actionable travel advice:
+* User Inputs: Destination, Travel Budget Tier (Backpacker / Mid-range / Luxury), Travel Pace (Relaxed / Moderate / Fast-paced), Duration (days), and Specific Interests (e.g., street food, hidden cafes, anime culture).
+* Output Widgets:
+  1. Personalized Daily Itinerary (includes off-the-beaten-path hidden gems)
+  2. Weather & Best Season Analysis
+  3. Smart Packing Checklist
+  4. Budget Breakdown Estimator
+  5. Local Cultural Etiquette & Phrases
+
+## 3. Web Prototype Implementation
+To ensure complete interactive functionality, I created a web application frontend (HTML5/CSS3/JavaScript) mirroring the AWS PartyRock pipeline:
+* Dynamic JS DOM manipulation handling custom user parameter updates.
+* Multi-card responsive layout rendering instant travel itineraries and budget metrics.
+* Fully interactive execution logic simulating AI prompt responses upon user submission.
