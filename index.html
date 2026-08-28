@@ -3,271 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Local Friend - Trip Planner AI</title>
+    <title>🧭 AI Trip Planner - Singapore</title>
     <style>
-        :root {
-            --bg-color: #f7f6f0;
-            --card-bg: #ffffff;
-            --accent-color: #d4f268;
-            --text-color: #1a1a1a;
-            --border-color: #e0e0e0;
-        }
-
+        /* Style dasar agar lebih rapi */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
+            background: #f0f4f8;
+            color: #1e293b;
+            line-height: 1.6;
         }
-
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-
-        header {
-            background-color: var(--accent-color);
-            padding: 24px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            border: 1px solid #c2e056;
+        h1 {
+            color: #0f3b5e;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
         }
-
-        header h1 {
-            margin: 0 0 8px 0;
-            font-size: 28px;
+        .input-group {
+            margin: 25px 0;
         }
-
-        header p {
-            margin: 0;
-            color: #333;
-        }
-
-        .input-section {
-            background-color: var(--card-bg);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 24px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
         label {
             font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
         }
-
-        input, select, textarea {
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 14px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        textarea {
-            resize: vertical;
-            height: 60px;
-        }
-
-        button {
-            background-color: var(--text-color);
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
+        select, input {
             width: 100%;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #333;
-        }
-
-        .output-section {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .widget {
-            background-color: var(--card-bg);
-            padding: 20px;
+            padding: 12px 15px;
+            border: 2px solid #cbd5e1;
             border-radius: 12px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            font-size: 16px;
+            transition: 0.2s;
         }
-
-        .widget-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        select:focus, input:focus {
+            border-color: #3b82f6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 14px 28px;
             font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 8px;
-        }
-
-        .output-content {
-            white-space: pre-line;
-            line-height: 1.6;
-            color: #444;
-        }
-
-        .hidden-gem {
-            background-color: #fffde7;
-            border-left: 4px solid #ffd54f;
-            padding: 12px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s;
+            width: 100%;
             margin-top: 10px;
-            border-radius: 4px;
+        }
+        button:hover {
+            background: #2563eb;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(59,130,246,0.4);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 16px;
+            border-left: 6px solid #3b82f6;
+            white-space: pre-wrap;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .placeholder {
+            color: #94a3b8;
+            font-style: italic;
+        }
+        .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
+    <div class="container">
         <h1>🧭 Your Local Friend Trip Planner (AI Powered)</h1>
-        <p>Aplikasi perencana perjalanan berbasis Generative AI yang dirancang layaknya rekomendasi dari teman lokal.</p>
-    </header>
+        <p>Rencanakan perjalanan <span class="badge">Singapore</span> dengan gaya lokal!</p>
 
-    <div class="input-section">
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="destination">Destinasi</label>
-                <input type="text" id="destination" value="Singapore" placeholder="Contoh: Tokyo, Bali, Singapore">
-            </div>
-            <div class="form-group">
-                <label for="budget">Anggaran (Budget)</label>
-                <select id="budget">
-                    <option value="Backpacker">Backpacker</option>
-                    <option value="Mid-range" selected>Mid-range</option>
-                    <option value="Luxury">Luxury</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="pace">Ritme (Pace)</label>
-                <select id="pace">
-                    <option value="Relaxed">Relaxed</option>
-                    <option value="Moderate" selected>Moderate</option>
-                    <option value="Fast-paced">Fast-paced</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="duration">Durasi (Hari)</label>
-                <input type="number" id="duration" value="4" min="1" max="30">
-            </div>
-        </div>
-        <div class="form-group" style="margin-bottom: 16px;">
-            <label for="interests">Minat / Hobi Khusus</label>
-            <textarea id="interests" placeholder="Contoh: Street food, hidden cafes, anime, shopping">Street food, hidden cafes, anime culture, traditional architecture.</textarea>
-        </div>
-        <button id="generateBtn">Generate Itinerary & Tips</button>
-    </div>
-
-    <div class="output-section">
-        <div class="widget">
-            <div class="widget-title">📖 1. Personalized Daily Itinerary</div>
-            <div class="output-content" id="itinerary-output">Klik tombol "Generate" untuk merancang itinerary...</div>
+        <!-- FORM INPUT -->
+        <div class="input-group">
+            <label for="duration">📅 Durasi (hari)</label>
+            <input type="number" id="duration" min="1" max="10" value="4">
         </div>
 
-        <div class="widget">
-            <div class="widget-title">🌤️ 2. Weather & Best Time to Visit</div>
-            <div class="output-content" id="weather-output">Menunggu input...</div>
+        <div class="input-group">
+            <label for="budget">💰 Anggaran</label>
+            <select id="budget">
+                <option value="mid-range" selected>Mid-range (Rp 5-10 juta)</option>
+                <option value="budget">Budget (Rp 2-5 juta)</option>
+                <option value="luxury">Luxury (Rp 15+ juta)</option>
+            </select>
         </div>
 
-        <div class="widget">
-            <div class="widget-title">🎒 3. Smart Packing Suggestions</div>
-            <div class="output-content" id="packing-output">Menunggu input...</div>
+        <div class="input-group">
+            <label for="interest">🌟 Minat Utama</label>
+            <select id="interest">
+                <option value="culinary">Kuliner & Street Food</option>
+                <option value="culture" selected>Budaya & Sejarah</option>
+                <option value="nature">Alam & Outdoor</option>
+                <option value="anime">Anime & Pop Culture</option>
+                <option value="hidden">Hidden Gems (Off the beaten path)</option>
+            </select>
         </div>
 
-        <div class="widget">
-            <div class="widget-title">💰 4. Budget Breakdown Estimator</div>
-            <div class="output-content" id="budget-output">Menunggu input...</div>
-        </div>
+        <button id="generateBtn">✨ Generate Trip Plan</button>
 
-        <div class="widget">
-            <div class="widget-title">🗣️ 5. Local Phrases & Language Tips</div>
-            <div class="output-content" id="phrases-output">Menunggu input...</div>
+        <!-- TEMPAT HASIL -->
+        <div id="result">
+            <span class="placeholder">Klik tombol di atas untuk menghasilkan rekomendasi perjalanan...</span>
         </div>
     </div>
-</div>
 
-<script>
-    function runTripPlanner() {
-        const dest = document.getElementById('destination').value.trim() || 'Destinasi Impian';
-        const budget = document.getElementById('budget').value;
-        const pace = document.getElementById('pace').value;
-        const duration = document.getElementById('duration').value || 3;
-        const interests = document.getElementById('interests').value.trim() || 'Eksplorasi lokal';
+    <script>
+        // --- LOGIKA GENERATE ---
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            // Ambil nilai dari input
+            const duration = document.getElementById('duration').value || 4;
+            const budget = document.getElementById('budget').value;
+            const interest = document.getElementById('interest').value;
 
-        // 1. Itinerary Generator
-        document.getElementById('itinerary-output').innerHTML = `
-            <strong>Panduan Lokal ${duration} Hari di ${dest} (${budget} | Ritme: ${pace}):</strong>\n
-            • <strong>Hari 1:</strong> Tiba di ${dest}, check-in, lalu santai menjelajahi spot sekitar sesuai minatmu (${interests}).
-            • <strong>Hari 2 - ${Math.max(2, duration - 1)}:</strong> Menjelajahi pusat budaya lokal, kawasan kuliner tersembunyi, dan tempat favorit warga lokal.
-            <div class="hidden-gem">💎 <strong>Hidden Gem Recommendation:</strong> Jangan cuma ke pusat kota. Coba kunjungi area pinggiran ${dest} yang jarang dikunjungi turis untuk menemukan kedai kopi tua & pasar lokal autentik!</div>
-            • <strong>Hari ${duration}:</strong> Berburu oleh-oleh unik, menikmati santap siang terakhir, dan persiapan kepulangan.
-        `;
+            // Peta label untuk tampilan yang lebih rapi
+            const budgetLabel = {
+                'budget': '💰 Hemat (Budget)',
+                'mid-range': '💵 Menengah (Mid-range)',
+                'luxury': '💎 Mewah (Luxury)'
+            };
 
-        // 2. Weather Generator
-        document.getElementById('weather-output').innerHTML = `
-            Rekomendasi cuaca untuk perjalanan ke <strong>${dest}</strong>:\n
-            • <strong>Kondisi Umum:</strong> Pastikan cek perkiraan cuaca sebelum berangkat.
-            • <strong>Waktu Terbaik:</strong> Bulan-bulan transisi musim biasanya menawarkan cuaca paling bersahabat dan jumlah turis yang lebih sedikit.
-        `;
+            const interestLabel = {
+                'culinary': '🍜 Kuliner & Street Food',
+                'culture': '🏛️ Budaya & Sejarah',
+                'nature': '🌿 Alam & Outdoor',
+                'anime': '🎌 Anime & Pop Culture',
+                'hidden': '🔍 Hidden Gems'
+            };
 
-        // 3. Packing Generator
-        document.getElementById('packing-output').innerHTML = `
-            Daftar barang bawaan ideal untuk ritme <em>${pace}</em> di ${dest}:\n
-            • Sepatu berjalan yang nyaman dan tahan lama.
-            • Pakaian sesuai minat aktivitas (${interests}).
-            • Adaptor listrik internasional & powerbank.
-            • Kit kesehatan mini dan dokumen perjalanan penting.
-        `;
+            // --- DATA DINAMIS BERDASARKAN MINAT ---
+            let dailyActivities = [];
+            
+            // Base activity untuk setiap hari (akan dikustomisasi)
+            const baseActivities = {
+                'culinary': [
+                    'Sarapan di pasar pagi terkenal, cicipi kaya toast & kopi lokal.',
+                    'Tur kuliner jalanan di kawasan Chinatown atau Little India.',
+                    'Mengunjungi hawker center bintang Michelin dengan harga terjangkau.',
+                    'Mencicipi seafood chili crab di restoran tepi pantai.'
+                ],
+                'culture': [
+                    'Menjelajahi kuil-kuil bersejarah dan museum nasional.',
+                    'Tur jalan kaki warisan kolonial di Civic District.',
+                    'Mengunjungi kampung tradisional dan galeri seni lokal.',
+                    'Menikmati pertunjukan budaya atau festival jalanan.'
+                ],
+                'nature': [
+                    'Jalan pagi di Gardens by the Bay atau Botanical Gardens.',
+                    'Trekking ringan di Southern Ridges atau MacRitchie Reservoir.',
+                    'Bersepeda di Pulau Ubin atau East Coast Park.',
+                    'Sunset cruise atau piknik di taman tepi laut.'
+                ],
+                'anime': [
+                    'Mengunjungi toko merchandise anime & manga di Orchard Road.',
+                    'Tur ke kafe bertema anime atau cosplay center.',
+                    'Menjelajahi distrik elektronik & arcade game klasik.',
+                    'Mengikuti workshop drawing atau meetup komunitas.'
+                ],
+                'hidden': [
+                    'Menemukan kedai kopi tua di jantung kota yang jarang diketahui.',
+                    'Jelajahi lorong-lorong seni dan mural di kampung.',
+                    'Mengunjungi pasar lokal yang tidak ada di panduan turis.',
+                    'Mencicipi makanan rumahan di warung makan tersembunyi.'
+                ]
+            };
 
-        // 4. Budget Generator
-        let estPerDay = budget === 'Backpacker' ? 'Rp300.000 - Rp600.000' : (budget === 'Luxury' ? 'Rp3.000.000+' : 'Rp800.000 - Rp1.800.000');
-        document.getElementById('budget-output').innerHTML = `
-            Estimasi anggaran kategori <strong>${budget}</strong> di ${dest}:\n
-            • <strong>Perkiraan Biaya Harian:</strong> sekitar ${estPerDay} / hari.
-            • <strong>Akomodasi:</strong> Disesuaikan dengan pilihan kelas ${budget}.
-            • <strong>Tips Hemat:</strong> Manfaatkan transportasi umum lokal dan tempat makan langganan warga lokal di ${dest}.
-        `;
+            // Ambil aktivitas sesuai minat, atau fallback ke budaya jika tidak ada
+            const activities = baseActivities[interest] || baseActivities['culture'];
 
-        // 5. Phrases Generator
-        document.getElementById('phrases-output').innerHTML = `
-            Tips bahasa & etika lokal di <strong>${dest}</strong>:\n
-            • Pelajari salam dasar ("Halo", "Terima Kasih", "Berapa Harganya?") dalam bahasa lokal ${dest}.
-            • Selalu bersikap ramah dan hormati etika/adat bertamu masyarakat setempat.
-        `;
-    }
+            // Bangun itinerary per hari
+            let itinerary = `📅 **Rencana ${duration} Hari di Singapore**\n`;
+            itinerary += `💰 Anggaran: ${budgetLabel[budget] || budget}\n`;
+            itinerary += `🌟 Minat: ${interestLabel[interest] || interest}\n`;
+            itinerary += `⚡ Ritme: Moderate (seimbang antara eksplorasi & santai)\n\n`;
 
-    // Pasang Event Listener pada Tombol Generate
-    document.getElementById('generateBtn').addEventListener('click', runTripPlanner);
+            for (let i = 0; i < duration; i++) {
+                const dayNum = i + 1;
+                // Ambil aktivitas berdasarkan urutan, jika kurang ulangi dari awal
+                const activity = activities[i % activities.length];
+                // Tambahkan variasi untuk hari ke-i
+                let extra = '';
+                if (i === 0) extra = ' (Hari tiba, check-in, dan mulai eksplorasi)';
+                else if (i === duration - 1) extra = ' (Hari terakhir, persiapan pulang & oleh-oleh)';
+                else if (i === 1) extra = ' (Hari penuh eksplorasi)';
+                else if (i === 2) extra = ' (Jelajahi lebih dalam)';
+                
+                itinerary += `**Hari ${dayNum}:**\n`;
+                itinerary += `• ${activity}${extra}\n`;
+                
+                // Tambahkan rekomendasi hidden gem di hari ke-2 jika durasi > 2
+                if (i === 1 && duration >= 3) {
+                    itinerary += `  💎 *Hidden Gem:* Coba cari warung kopi tua di ${['Kampong Glam', 'Joo Chiat', 'Tiong Bahru'][dayNum % 3]}.\n`;
+                }
+                itinerary += '\n';
+            }
 
-    // Jalankan sekali saat halaman pertama kali dimuat
-    window.onload = runTripPlanner;
-</script>
+            // Tambahkan tips penutup
+            itinerary += `---\n💡 **Tips Lokal:**\n`;
+            itinerary += `• Gunakan MRT untuk transportasi utama.\n`;
+            itinerary += `• Bawa payung kecil (cuaca tropis sering hujan tiba-tiba).\n`;
+            itinerary += `• Beli kartu EZ-Link untuk kemudahan transportasi.\n`;
+            itinerary += `• Jangan lewatkan durian di musimnya! 🍈\n`;
 
+            // Tampilkan hasil ke elemen #result
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = itinerary.replace(/\n/g, '<br>'); // ganti newline ke <br> agar tampil di HTML
+        });
+    </script>
 </body>
 </html>
