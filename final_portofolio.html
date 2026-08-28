@@ -830,4 +830,166 @@
                             'Menyaksikan tarian Kecak atau Legong.'
                         ],
                         nature: [
-                            'Jalan pagi di saw
+                            'Jalan pagi di sawah Tegalalang atau Jatiluwih.',
+                            'Trekking ke Gunung Batur (sunrise).',
+                            'Bersepeda di sekitar Ubud atau pantai Sanur.',
+                            'Sunset di pantai Uluwatu atau Jimbaran.'
+                        ],
+                        anime: [
+                            'Mengunjungi toko merchandise di Seminyak atau Kuta.',
+                            'Tur ke kafe bertema Jepang atau pop culture.',
+                            'Menjelajahi distrik game dan arcade di Denpasar.',
+                            'Mengikuti event cosplay atau komunitas lokal.'
+                        ],
+                        hidden: [
+                            'Jelajahi desa wisata di Sidemen atau Tenganan.',
+                            'Mengunjungi air terjun tersembunyi di sekitar Ubud.',
+                            'Menemukan kafe organik di area Canggu.',
+                            'Mencicipi makanan Bali autentik di warung lokal.'
+                        ],
+                        shopping: [
+                            'Belanja di pasar Ubud, Seminyak, atau Kuta.',
+                            'Mencari barang kerajinan tangan di desa Celuk/Mas.',
+                            'Mengunjungi butik pakaian dan aksesori lokal.',
+                            'Berburu oleh-oleh khas seperti lukisan atau perak.'
+                        ]
+                    }
+                },
+                'Seoul': {
+                    label: '🇰🇷 Seoul',
+                    currency: 'KRW',
+                    tips: [
+                        'Gunakan T-money card untuk transportasi.',
+                        'Pelajari beberapa frasa dasar Bahasa Korea.',
+                        'Coba makanan jalanan di pasar malam.',
+                        'Hormati budaya dengan membungkuk saat menyapa.'
+                    ],
+                    hiddenSpots: ['Seongsu-dong', 'Ikseon-dong', 'Mangwon-dong', 'Hongdae'],
+                    activities: {
+                        culinary: [
+                            'Sarapan dengan kimbap atau tteokguk.',
+                            'Tur kuliner di Gwangjang Market atau Myeongdong.',
+                            'Mencicipi kimchi jjigae, bulgogi, atau bibimbap.',
+                            'Eksplorasi dessert Korea seperti bingsu atau hotteok.'
+                        ],
+                        culture: [
+                            'Mengunjungi Istana Gyeongbokgung dan Bukchon Hanok.',
+                            'Tur ke museum nasional dan sejarah Korea.',
+                            'Menjelajahi kuil-kuil di pusat kota.',
+                            'Menyaksikan pertunjukan Nanta atau tari tradisional.'
+                        ],
+                        nature: [
+                            'Jalan pagi di Cheonggyecheon atau Taman Namsan.',
+                            'Trekking di Bukhansan atau Inwangsan.',
+                            'Bersepeda di sepanjang Sungai Han.',
+                            'Melihat pemandangan dari N Seoul Tower.'
+                        ],
+                        anime: [
+                            'Mengunjungi toko merchandise di Myeongdong atau Hongdae.',
+                            'Tur ke kafe bertema anime atau game di Hongdae.',
+                            'Menjelajahi distrik game di Jongno atau Gangnam.',
+                            'Mengikuti workshop ilustrasi atau meetup komunitas.'
+                        ],
+                        hidden: [
+                            'Jelajahi lorong-lorong vintage di Seongsu-dong.',
+                            'Mengunjungi kafe tua di Ikseon-dong.',
+                            'Menemukan restoran tersembunyi di Mangwon-dong.',
+                            'Mencicipi makanan rumahan di pasar tradisional.'
+                        ],
+                        shopping: [
+                            'Belanja di Myeongdong, Dongdaemun, dan Gangnam.',
+                            'Mencari barang fashion di Hongdae atau Ewha.',
+                            'Mengunjungi pasar loak atau toko second-hand.',
+                            'Berburu oleh-oleh khas di toko kerajinan Insadong.'
+                        ]
+                    }
+                }
+            };
+
+            // Label untuk tampilan
+            const budgetLabel = {
+                budget: '💰 Hemat (Budget)',
+                'mid-range': '💵 Menengah (Mid-range)',
+                luxury: '💎 Mewah (Luxury)'
+            };
+
+            const vibeLabel = {
+                relaxed: '🌴 Santai (Relaxed)',
+                moderate: '🚶 Moderate (seimbang)',
+                intense: '🏃 Intense (padat)'
+            };
+
+            const interestLabel = {
+                culinary: '🍜 Kuliner & Street Food',
+                culture: '🏛️ Budaya & Sejarah',
+                nature: '🌿 Alam & Outdoor',
+                anime: '🎌 Anime & Pop Culture',
+                hidden: '🔍 Hidden Gems',
+                shopping: '🛍️ Belanja & Fashion'
+            };
+
+            // ================================================================
+            // FUNGSI GENERATE (DINAMIS PER DESTINASI)
+            // ================================================================
+            function generatePlan() {
+                // Ambil nilai dari form
+                const destKey = document.getElementById('destination').value || 'Singapore';
+                const duration = parseInt(document.getElementById('duration').value, 10) || 4;
+                const budget = document.getElementById('budget').value || 'mid-range';
+                const vibe = document.getElementById('vibe').value || 'moderate';
+                const interest = document.getElementById('interest').value || 'culture';
+
+                // Ambil data destinasi
+                const dest = destinationData[destKey] || destinationData['Singapore'];
+                const activities = dest.activities[interest] || dest.activities.culture;
+                const hiddenSpots = dest.hiddenSpots || ['area lokal'];
+
+                // Bangun output
+                let output = '';
+                output += `📅 **Rencana ${duration} Hari di ${dest.label}**\n`;
+                output += `💰 Anggaran: ${budgetLabel[budget] || budget}\n`;
+                output += `🌟 Minat: ${interestLabel[interest] || interest}\n`;
+                output += `⚡ Ritme: ${vibeLabel[vibe] || vibe}\n\n`;
+
+                // Loop per hari
+                for (let i = 0; i < duration; i++) {
+                    const dayNum = i + 1;
+                    const activity = activities[i % activities.length];
+                    
+                    let extra = '';
+                    if (i === 0) extra = ' (Hari tiba, check-in, mulai eksplorasi ringan)';
+                    else if (i === duration - 1) extra = ' (Hari terakhir, persiapan pulang & oleh-oleh)';
+                    else if (i === 1) extra = ' (Hari penuh eksplorasi)';
+                    else if (i === 2) extra = ' (Jelajahi lebih dalam)';
+                    
+                    output += `**Hari ${dayNum}:**\n`;
+                    output += `• ${activity}${extra}\n`;
+                    
+                    // Sisipkan hidden gem di hari ke-2 jika durasi >= 3
+                    if (i === 1 && duration >= 3) {
+                        const spot = hiddenSpots[dayNum % hiddenSpots.length];
+                        output += `  💎 *Hidden Gem:* Cari warung kopi tua atau pasar lokal di ${spot}.\n`;
+                    }
+                    output += '\n';
+                }
+
+                // Tips penutup spesifik destinasi
+                output += `---\n💡 **Tips Lokal untuk ${dest.label}:**\n`;
+                dest.tips.forEach(tip => {
+                    output += `• ${tip}\n`;
+                });
+
+                // Tampilkan ke result-content
+                resultContent.innerHTML = output.replace(/\n/g, '<br>');
+            }
+
+            // Event listener tombol generate
+            generateBtn.addEventListener('click', generatePlan);
+
+            // Opsional: generate otomatis saat load (agar langsung terlihat)
+            // generatePlan();
+
+        })();
+    </script>
+</body>
+</html>
