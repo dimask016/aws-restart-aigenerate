@@ -1,662 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🧭 Your Local Friend Trip Planner - Portfolio Project</title>
-    <!-- Google Fonts & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
-        rel="stylesheet"
-    />
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-    <style>
-        /* ---------- ROOT VARIABLES ---------- */
-        :root {
-            --primary: #1e293b;
-            --primary-light: #334155;
-            --accent: #f59e0b;
-            --accent-hover: #d97706;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #0f172a;
-            --text-light: #475569;
-            --border: #e2e8f0;
-            --shadow: 0 20px 60px rgba(0,0,0,0.08);
-            --radius: 24px;
-            --radius-sm: 12px;
-            --transition: 0.25s ease;
-            --gradient-hero: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            padding: 2rem 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-
-        .portfolio-wrapper {
-            max-width: 1100px;
-            width: 100%;
-        }
-
-        /* ---------- HERO / HEADER PORTOFOLIO ---------- */
-        .portfolio-hero {
-            background: var(--gradient-hero);
-            color: white;
-            border-radius: var(--radius);
-            padding: 2.5rem 3rem;
-            margin-bottom: 2.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .portfolio-hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .portfolio-hero .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 1.2rem;
-        }
-
-        .portfolio-hero .meta-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1.5rem;
-            font-size: 0.9rem;
-            opacity: 0.85;
-        }
-
-        .portfolio-hero .meta-tags i {
-            color: var(--accent);
-            margin-right: 0.4rem;
-        }
-
-        .portfolio-hero .meta-tags a {
-            color: white;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            transition: var(--transition);
-        }
-
-        .portfolio-hero .meta-tags a:hover {
-            color: var(--accent);
-        }
-
-        /* ---------- BADGE ---------- */
-        .badge {
-            display: inline-block;
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--accent);
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        /* ---------- SECTION GRID ---------- */
-        .section-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 1.75rem 2rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .section-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
-        }
-
-        .section-card h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--primary);
-        }
-
-        .section-card h2 i {
-            color: var(--accent);
-            font-size: 1.3rem;
-        }
-
-        .section-card p, .section-card li {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .section-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .section-card ul li {
-            padding: 0.4rem 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.6rem;
-        }
-
-        .section-card ul li i {
-            color: var(--accent);
-            margin-top: 0.2rem;
-            width: 1.1rem;
-        }
-
-        /* ---------- FULL WIDTH ---------- */
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
-        /* ---------- APP PREVIEW (CONTAINER APP) ---------- */
-        .app-preview {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 2rem 2rem 2.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            margin-top: 1rem;
-        }
-
-        .app-preview .app-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .app-preview .app-header h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .app-preview .app-header .live-badge {
-            background: #dcfce7;
-            color: #166534;
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* ---------- FORM & APP STYLE (dari template asli) ---------- */
-        .app-container {
-            max-width: 100%;
-        }
-
-        .subhead {
-            color: var(--text-light);
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 1rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--primary-light);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        label i {
-            color: var(--accent);
-            width: 1.1rem;
-            font-size: 0.95rem;
-        }
-
-        select,
-        input {
-            padding: 0.7rem 1rem;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-sm);
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            background: white;
-            transition: var(--transition);
-            color: var(--text);
-        }
-
-        select:focus,
-        input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
-        }
-
-        .btn-generate {
-            background: var(--accent);
-            color: #0f172a;
-            font-weight: 700;
-            font-size: 1.05rem;
-            padding: 0.9rem 1.8rem;
-            border: none;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            width: 100%;
-            margin-top: 0.5rem;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
-        }
-
-        .btn-generate:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-generate:active {
-            transform: translateY(0);
-        }
-
-        /* ---------- RESULT ---------- */
-        #result-container {
-            margin-top: 2rem;
-            border-top: 2px dashed var(--border);
-            padding-top: 1.5rem;
-        }
-
-        #result-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        #result-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        #result-header h3 i {
-            color: var(--accent);
-        }
-
-        .badge-ai {
-            background: #f1f5f9;
-            border-radius: 40px;
-            padding: 0.25rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-light);
-            letter-spacing: 0.3px;
-        }
-
-        #result-content {
-            background: #f8fafc;
-            border-radius: var(--radius-sm);
-            padding: 1.5rem 1.75rem;
-            border: 1px solid var(--border);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--text);
-            white-space: pre-wrap;
-            word-break: break-word;
-            min-height: 100px;
-        }
-
-        #result-content .placeholder {
-            color: #94a3b8;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        /* ---------- FOOTER PORTOFOLIO ---------- */
-        .portfolio-footer {
-            margin-top: 2.5rem;
-            text-align: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-        }
-
-        .portfolio-footer a {
-            color: var(--primary);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            font-weight: 600;
-        }
-
-        .portfolio-footer a:hover {
-            color: var(--accent);
-        }
-
-        .portfolio-footer .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .portfolio-footer .social-links a {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .portfolio-footer .social-links a:hover {
-            color: var(--accent);
-            transform: scale(1.1);
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 768px) {
-            body { padding: 1rem; }
-            .portfolio-hero { padding: 1.75rem; }
-            .portfolio-hero h1 { font-size: 2rem; }
-            .section-grid { grid-template-columns: 1fr; }
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full { grid-column: 1; }
-            .app-preview { padding: 1.25rem; }
-            #result-content { padding: 1rem; }
-        }
-
-        @media (max-width: 480px) {
-            .portfolio-hero h1 { font-size: 1.6rem; }
-            .portfolio-hero .meta-tags { font-size: 0.8rem; flex-direction: column; gap: 0.3rem; }
-            .section-card { padding: 1.25rem; }
-        }
-    </style>
-</head>
-<body>
-    <div class="portfolio-wrapper">
-
-        <!-- ============================================================ -->
-        <!-- HERO / HEADER PORTOFOLIO                                      -->
-        <!-- ============================================================ -->
-        <header class="portfolio-hero">
-            <h1>
-                <span>🧭 Your Local Friend Trip Planner</span>
-                <span class="badge">Portfolio Project</span>
-            </h1>
-            <div class="subtitle">
-                <i class="fas fa-quote-left" style="color: var(--accent); margin-right: 0.4rem;"></i>
-                A Generative AI-powered travel itinerary generator — built with AWS PartyRock &amp; Amazon Bedrock
-            </div>
-            <div class="meta-tags">
-                <span><i class="fas fa-calendar-alt"></i> 2026</span>
-                <span><i class="fas fa-tag"></i> Generative AI · AWS · PartyRock</span>
-                <span><i class="fas fa-code"></i> HTML5 · CSS3 · JavaScript</span>
-                <span>
-                    <i class="fab fa-github"></i>
-                    <a href="https://github.com/dimask016/aws-restart-aigenerate" target="_blank">GitHub Repo</a>
-                </span>
-                <span>
-                    <i class="fas fa-external-link-alt"></i>
-                    <a href="https://dimask016.github.io/aws-restart-aigenerate/" target="_blank">Live Demo</a>
-                </span>
-            </div>
-        </header>
-
-        <!-- ============================================================ -->
-        <!-- SECTION: DESKRIPSI PROYEK & ARSITEKTUR                       -->
-        <!-- ============================================================ -->
-        <div class="section-grid">
-
-            <!-- Deskripsi -->
-            <div class="section-card">
-                <h2><i class="fas fa-bullseye"></i> Project Overview</h2>
-                <p>
-                    <strong>Your Local Friend Trip Planner</strong> adalah aplikasi interaktif yang memanfaatkan
-                    <strong>Generative AI</strong> untuk membantu wisatawan membuat rencana perjalanan yang sangat personal.
-                    Terinspirasi dari konsep <strong>AWS PartyRock</strong> dan didukung oleh <strong>Amazon Bedrock</strong>,
-                    aplikasi ini mensimulasikan pipeline AI yang mengubah input pengguna menjadi rekomendasi perjalanan yang
-                    terstruktur dan kontekstual.
-                </p>
-                <p style="margin-top: 0.75rem;">
-                    <span class="badge" style="background: #e0f2fe; color: #0369a1; border-color: #7dd3fc;">🎯 Tujuan</span>
-                    Menunjukkan kemampuan merancang solusi AI generatif yang <strong>user-centric</strong>, dengan fokus pada
-                    pengalaman pengguna dan personalisasi mendalam.
-                </p>
-            </div>
-
-            <!-- Arsitektur & Teknologi -->
-            <div class="section-card">
-                <h2><i class="fas fa-cogs"></i> System Architecture</h2>
-                <p><strong>Alur Pemrosesan (Pipeline):</strong></p>
-                <ul>
-                    <li><i class="fas fa-arrow-right"></i> <strong>Input:</strong> Destinasi, Budget, Ritme, Durasi, Minat</li>
-                    <li><i class="fas fa-arrow-right"></i> <strong>AI Processing:</strong> Simulasi prompt engineering berbasis konteks</li>
-                    <li><i class="fas fa-arrow-right"></i> <strong>Output Widgets:</strong>
-                        <ul style="margin-top: 0.3rem; list-style: disc; padding-left: 1.5rem; color: var(--text-light);">
-                            <li>📖 Personalized Daily Itinerary</li>
-                            <li>☀️ Weather & Best Season Analysis</li>
-                            <li>🎒 Smart Packing Checklist</li>
-                            <li>💰 Budget Breakdown Estimator</li>
-                            <li>🗣️ Local Cultural Etiquette & Phrases</li>
-                        </ul>
-                    </li>
-                </ul>
-                <p style="margin-top: 0.75rem;">
-                    <i class="fas fa-cloud" style="color: var(--accent);"></i>
-                    <strong>Teknologi:</strong> AWS PartyRock (simulasi), Amazon Bedrock, HTML5/CSS3/JS frontend.
-                </p>
-            </div>
-
-            <!-- Fitur Utama -->
-            <div class="section-card">
-                <h2><i class="fas fa-star"></i> Key Features</h2>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> <strong>Personalisasi 5 Dimensi:</strong> Destinasi, Budget, Ritme, Durasi, Minat</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Hidden Gems:</strong> Rekomendasi tempat off-the-beaten-path</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Tips Lokal Spesifik:</strong> Saran transportasi, cuaca, dan budaya per destinasi</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Responsif & Aksesibel:</strong> Tampilan optimal di semua perangkat</li>
-                    <li><i class="fas fa-check-circle"></i> <strong>Simulasi AI Pipeline:</strong> Mirip dengan arsitektur AWS PartyRock</li>
-                </ul>
-            </div>
-
-            <!-- Sumber Daya & Link Eksternal -->
-            <div class="section-card">
-                <h2><i class="fas fa-link"></i> Resources & References</h2>
-                <ul>
-                    <li><i class="fab fa-aws"></i> <a href="https://aws.amazon.com/bedrock/" target="_blank">Amazon Bedrock</a> – Foundation Models</li>
-                    <li><i class="fas fa-rocket"></i> <a href="https://partyrock.aws/" target="_blank">AWS PartyRock</a> – Generative AI Playground</li>
-                    <li><i class="fab fa-github"></i> <a href="https://github.com/dimask016/aws-restart-aigenerate" target="_blank">Source Code</a> – Repositori Proyek</li>
-                    <li><i class="fas fa-file-alt"></i> <a href="https://github.com/dimask016/aws-restart-aigenerate/blob/main/noted.txt" target="_blank">noted.txt</a> – Dokumentasi Teknis</li>
-                    <li><i class="fas fa-palette"></i> <a href="https://fonts.google.com/" target="_blank">Google Fonts</a> – Tipografi (Inter)</li>
-                    <li><i class="fas fa-icons"></i> <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> – Ikon</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- APP PREVIEW (APLIKASI ITU SENDIRI)                            -->
-        <!-- ============================================================ -->
-        <div class="app-preview">
-            <div class="app-header">
-                <h2><i class="fas fa-robot" style="color: var(--accent);"></i> Try the App</h2>
-                <span class="live-badge"><i class="fas fa-circle" style="color: #22c55e; font-size: 0.6rem;"></i> Live Interactive</span>
-            </div>
-
-            <div class="app-container">
-
-                <div class="subhead">
-                    <i class="fas fa-map-pin" style="color: var(--accent); margin-right: 0.4rem;"></i>
-                    Masukkan preferensi perjalananmu, lalu klik <strong>Generate</strong> untuk mendapatkan rekomendasi personal!
-                </div>
-
-                <!-- FORM -->
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="destination"><i class="fas fa-location-dot"></i> Destinasi</label>
-                        <select id="destination">
-                            <option value="Singapore" selected>🇸🇬 Singapore</option>
-                            <option value="Bangkok">🇹🇭 Bangkok</option>
-                            <option value="Tokyo">🇯🇵 Tokyo</option>
-                            <option value="Bali">🇮🇩 Bali</option>
-                            <option value="Seoul">🇰🇷 Seoul</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration"><i class="fas fa-calendar-days"></i> Durasi (hari)</label>
-                        <input type="number" id="duration" min="1" max="14" value="4" />
-                    </div>
-                    <div class="form-group">
-                        <label for="budget"><i class="fas fa-wallet"></i> Anggaran</label>
-                        <select id="budget">
-                            <option value="budget">💰 Budget (hemat)</option>
-                            <option value="mid-range" selected>💵 Mid-range (seimbang)</option>
-                            <option value="luxury">✨ Luxury (mewah)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="vibe"><i class="fas fa-flag"></i> Ritme</label>
-                        <select id="vibe">
-                            <option value="relaxed">🌴 Santai (Relaxed)</option>
-                            <option value="moderate" selected>🚶 Moderate (seimbang)</option>
-                            <option value="intense">🏃 Intense (padat)</option>
-                        </select>
-                    </div>
-                    <div class="form-group full">
-                        <label for="interest"><i class="fas fa-heart"></i> Minat utama</label>
-                        <select id="interest">
-                            <option value="culinary">🍜 Kuliner & Street Food</option>
-                            <option value="culture" selected>🏛️ Budaya & Sejarah</option>
-                            <option value="nature">🌿 Alam & Outdoor</option>
-                            <option value="anime">🎌 Anime & Pop Culture</option>
-                            <option value="hidden">🔍 Hidden Gems (off the beaten path)</option>
-                            <option value="shopping">🛍️ Belanja & Fashion</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- TOMBOL GENERATE -->
-                <button class="btn-generate" id="generateBtn">
-                    <i class="fas fa-wand-magic-sparkles"></i> Generate Trip Plan
-                </button>
-
-                <!-- AREA HASIL -->
-                <div id="result-container">
-                    <div id="result-header">
-                        <h3><i class="fas fa-route"></i> Rencana Perjalanan</h3>
-                        <span class="badge-ai"><i class="fas fa-brain"></i> AI-generated</span>
-                    </div>
-                    <div id="result-content">
-                        <span class="placeholder">
-                            <i class="fas fa-spinner fa-pulse"></i>
-                            Klik tombol <strong>“Generate Trip Plan”</strong> untuk mulai merencanakan petualanganmu!
-                        </span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- FOOTER PORTOFOLIO                                             -->
-        <!-- ============================================================ -->
-        <footer class="portfolio-footer">
-            <div class="social-links">
-                <a href="https://github.com/dimask016" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/dimask016" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://dimask016.github.io" target="_blank" title="Portfolio"><i class="fas fa-briefcase"></i></a>
-                <a href="https://partyrock.aws" target="_blank" title="AWS PartyRock"><i class="fas fa-rocket"></i></a>
-            </div>
-            <p>
-                <i class="fas fa-copyright"></i> 2026 <strong>Dimas K.</strong> —
-                Built with <i class="fas fa-heart" style="color: #ef4444;"></i> for
-                <strong>AWS re/Start Generative AI Portfolio</strong> —
-                <a href="https://github.com/dimask016/aws-restart-aigenerate" target="_blank">View on GitHub</a>
-            </p>
-            <p style="margin-top: 0.3rem; font-size: 0.8rem;">
-                <i class="fas fa-aws" style="color: #ff9900;"></i> Powered by Amazon Bedrock (simulasi) · PartyRock-inspired pipeline
-            </p>
-        </footer>
-
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- JAVASCRIPT (LOGIKA GENERATE)                                  -->
-    <!-- ============================================================ -->
-    <script>
-        (function() {
-            "use strict";
-
-            const generateBtn = document.getElementById('generateBtn');
-            const resultContent = document.getElementById('result-content');
-
-            // Data aktivitas berdasarkan minat
-            const activityMap = {
+// ========== PERBAIKAN LOGIKA GENERATE ==========
+(function() {
+    "use strict";
+
+    const generateBtn = document.getElementById('generateBtn');
+    const resultContent = document.getElementById('result-content');
+
+    // ---------- DATA DESTINASI (DIPERLUAS) ----------
+    const destinationData = {
+        'Singapore': {
+            label: '🇸🇬 Singapore',
+            currency: 'SGD',
+            tips: [
+                'Gunakan MRT untuk transportasi utama.',
+                'Bawa payung kecil (cuaca tropis sering hujan tiba-tiba).',
+                'Beli kartu EZ-Link untuk kemudahan transportasi.',
+                'Jangan lewatkan durian di musimnya! 🍈'
+            ],
+            hiddenSpots: ['Kampong Glam', 'Joo Chiat', 'Tiong Bahru', 'Geylang Serai'],
+            activities: {
                 culinary: [
                     'Sarapan di pasar pagi dengan kaya toast & kopi lokal.',
                     'Tur kuliner jalanan di Chinatown atau Little India.',
@@ -693,82 +54,285 @@
                     'Mengunjungi pasar loak dan factory outlet.',
                     'Berburu oleh-oleh khas di pusat kerajinan.'
                 ]
-            };
-
-            const budgetLabel = {
-                budget: '💰 Hemat (Budget)',
-                'mid-range': '💵 Menengah (Mid-range)',
-                luxury: '💎 Mewah (Luxury)'
-            };
-
-            const vibeLabel = {
-                relaxed: '🌴 Santai (Relaxed)',
-                moderate: '🚶 Moderate (seimbang)',
-                intense: '🏃 Intense (padat)'
-            };
-
-            const interestLabel = {
-                culinary: '🍜 Kuliner & Street Food',
-                culture: '🏛️ Budaya & Sejarah',
-                nature: '🌿 Alam & Outdoor',
-                anime: '🎌 Anime & Pop Culture',
-                hidden: '🔍 Hidden Gems',
-                shopping: '🛍️ Belanja & Fashion'
-            };
-
-            function generatePlan() {
-                const destination = document.getElementById('destination').value || 'Singapore';
-                const duration = parseInt(document.getElementById('duration').value, 10) || 4;
-                const budget = document.getElementById('budget').value || 'mid-range';
-                const vibe = document.getElementById('vibe').value || 'moderate';
-                const interest = document.getElementById('interest').value || 'culture';
-
-                const activities = activityMap[interest] || activityMap.culture;
-
-                let output = '';
-                output += `📅 **Rencana ${duration} Hari di ${destination}**\n`;
-                output += `💰 Anggaran: ${budgetLabel[budget] || budget}\n`;
-                output += `🌟 Minat: ${interestLabel[interest] || interest}\n`;
-                output += `⚡ Ritme: ${vibeLabel[vibe] || vibe}\n\n`;
-
-                for (let i = 0; i < duration; i++) {
-                    const dayNum = i + 1;
-                    const activity = activities[i % activities.length];
-                    
-                    let extra = '';
-                    if (i === 0) extra = ' (Hari tiba, check-in, mulai eksplorasi ringan)';
-                    else if (i === duration - 1) extra = ' (Hari terakhir, persiapan pulang & oleh-oleh)';
-                    else if (i === 1) extra = ' (Hari penuh eksplorasi)';
-                    else if (i === 2) extra = ' (Jelajahi lebih dalam)';
-                    
-                    output += `**Hari ${dayNum}:**\n`;
-                    output += `• ${activity}${extra}\n`;
-                    
-                    if (i === 1 && duration >= 3) {
-                        const hiddenSpots = ['Kampong Glam', 'Joo Chiat', 'Tiong Bahru', 'Geylang Serai'];
-                        const spot = hiddenSpots[dayNum % hiddenSpots.length];
-                        output += `  💎 *Hidden Gem:* Cari warung kopi tua atau pasar lokal di ${spot}.\n`;
-                    }
-                    output += '\n';
-                }
-
-                // Tips lokal
-                output += `---\n💡 **Tips Lokal untuk ${destination}:**\n`;
-                const tips = {
-                    'Singapore': '• Gunakan MRT untuk transportasi utama.\n• Bawa payung kecil (cuaca tropis sering hujan tiba-tiba).\n• Beli kartu EZ-Link untuk kemudahan transportasi.\n• Jangan lewatkan durian di musimnya! 🍈',
-                    'Bangkok': '• Naik BTS atau taksi air untuk hindari macet.\n• Bawa pakaian tipis dan nyaman (cuaca panas).\n• Coba makanan pinggir jalan, tapi pastikan bersih.',
-                    'Tokyo': '• Gunakan JR Pass untuk perjalanan antar kota.\n• Bawa uang tunai karena banyak tempat tidak terima kartu.\n• Patuhi aturan antre dan tidak makan sambil jalan.',
-                    'Bali': '• Sewa motor atau mobil dengan driver lokal.\n• Hormati upacara dan pura setempat.\n• Bawa sunscreen dan topi karena cuaca panas.',
-                    'Seoul': '• Gunakan T-Money card untuk transportasi.\n• Pelajari beberapa frasa dasar Bahasa Korea.\n• Coba makanan jalanan di pasar malam.'
-                };
-                output += tips[destination] || '• Pelajari sedikit bahasa lokal untuk interaksi lebih hangat.\n• Gunakan transportasi umum atau ojek online.\n• Tanyakan rekomendasi ke warga sekitar.';
-
-                resultContent.innerHTML = output.replace(/\n/g, '<br>');
             }
+        },
+        'Bangkok': {
+            label: '🇹🇭 Bangkok',
+            currency: 'THB',
+            tips: [
+                'Naik BTS atau taksi air untuk hindari macet.',
+                'Bawa pakaian tipis dan nyaman (cuaca panas).',
+                'Coba makanan pinggir jalan, tapi pastikan bersih.',
+                'Hormati budaya dengan berpakaian sopan di kuil.'
+            ],
+            hiddenSpots: ['Bang Rak', 'Thonburi', 'Ari', 'Chinatown (Yaowarat)'],
+            activities: {
+                culinary: [
+                    'Sarapan dengan bubur ayam atau jok di pasar pagi.',
+                    'Tur kuliner di Chinatown (Yaowarat) malam hari.',
+                    'Mencicipi tom yum goong dan pad thai di pinggir jalan.',
+                    'Eksplorasi dessert Thailand seperti mango sticky rice.'
+                ],
+                culture: [
+                    'Mengunjungi Grand Palace dan Wat Phra Kaew.',
+                    'Tur ke Wat Arun dan Wat Pho (patung Buddha berbaring).',
+                    'Menjelajahi museum Siam dan sejarah Thailand.',
+                    'Menyaksikan pertunjukan tari tradisional Thailand.'
+                ],
+                nature: [
+                    'Jalan pagi di Lumpini Park atau Benjakitti Park.',
+                    'Tur ke Taman Nasional Khao Yai (jika waktu cukup).',
+                    'Bersepeda di Green Lung (Bang Krachao).',
+                    'Sunset cruise di Sungai Chao Phraya.'
+                ],
+                anime: [
+                    'Mengunjungi pusat perbelanjaan Siam dengan toko merchandise.',
+                    'Tur ke kafe bertema anime atau cosplay di MBK Center.',
+                    'Menjelajahi distrik game dan arcade di Siam Square.',
+                    'Mengikuti event cosplay atau komunitas di Bangkok.'
+                ],
+                hidden: [
+                    'Jelajahi komunitas seni di Khlong Toei atau Talad Noi.',
+                    'Mengunjungi pasar terapung yang tidak terlalu turis (Khlong Lat Mayom).',
+                    'Menemukan kafe vintage di area Bang Rak.',
+                    'Mencicipi makanan lokal di pasar malam komunitas.'
+                ],
+                shopping: [
+                    'Belanja di Siam Paragon, CentralWorld, dan MBK.',
+                    'Mencari barang unik di Chatuchak Market (akhir pekan).',
+                    'Mengunjungi terminal 21 untuk fashion murah.',
+                    'Berburu oleh-oleh di pasar lokal atau toko herbal.'
+                ]
+            }
+        },
+        'Tokyo': {
+            label: '🇯🇵 Tokyo',
+            currency: 'JPY',
+            tips: [
+                'Gunakan JR Pass untuk perjalanan antar kota.',
+                'Bawa uang tunai karena banyak tempat tidak terima kartu.',
+                'Patuhi aturan antre dan tidak makan sambil jalan.',
+                'Pelajari beberapa frasa dasar Bahasa Jepang.'
+            ],
+            hiddenSpots: ['Shimokitazawa', 'Koenji', 'Yanesen', 'Kagurazaka'],
+            activities: {
+                culinary: [
+                    'Sarapan dengan onigiri dan miso shiru di konbini.',
+                    'Tur kuliner di Tsukiji Outer Market atau Tokyu Food Show.',
+                    'Mencicipi ramen, sushi, atau tempura di restoran lokal.',
+                    'Eksplorasi dessert Jepang seperti mochi dan dorayaki.'
+                ],
+                culture: [
+                    'Mengunjungi kuil Senso-ji dan Asakusa.',
+                    'Tur ke Istana Kekaisaran dan taman sekitarnya.',
+                    'Menjelajahi museum Edo-Tokyo dan sejarah kota.',
+                    'Menyaksikan upacara minum teh atau festival tradisional.'
+                ],
+                nature: [
+                    'Jalan di taman Ueno atau Shinjuku Gyoen.',
+                    'Trekking di Gunung Takao atau Nikko (jika waktu cukup).',
+                    'Bersepeda di sepanjang Sungai Sumida.',
+                    'Melihat pemandangan kota dari Tokyo Skytree atau Shibuya Sky.'
+                ],
+                anime: [
+                    'Mengunjungi Akihabara untuk merchandise anime & elektronik.',
+                    'Tur ke kafe bertema anime di Ikebukuro (Pokémon, Ghibli).',
+                    'Menjelajahi distrik pop culture di Harajuku dan Shibuya.',
+                    'Mengikuti workshop menggambar atau meetup komunitas.'
+                ],
+                hidden: [
+                    'Jelajahi lorong-lorong kecil di Shimokitazawa untuk vintage.',
+                    'Mengunjungi kafe tua di distrik Yanesen.',
+                    'Menemukan bar dan restoran tersembunyi di Golden Gai.',
+                    'Mencicipi makanan rumahan di izakaya lokal.'
+                ],
+                shopping: [
+                    'Belanja di Ginza, Shibuya, dan Harajuku.',
+                    'Mencari barang unik di toko departemen dan butik.',
+                    'Mengunjungi pasar loak atau toko second-hand.',
+                    'Berburu oleh-oleh khas di asakusa atau toko kerajinan.'
+                ]
+            }
+        },
+        'Bali': {
+            label: '🇮🇩 Bali',
+            currency: 'IDR',
+            tips: [
+                'Sewa motor atau mobil dengan driver lokal.',
+                'Hormati upacara dan pura setempat.',
+                'Bawa sunscreen dan topi karena cuaca panas.',
+                'Gunakan Gojek/Grab untuk transportasi praktis.'
+            ],
+            hiddenSpots: ['Sidemen', 'Amed', 'Munduk', 'Tenganan'],
+            activities: {
+                culinary: [
+                    'Sarapan dengan nasi campur atau bubur ayam.',
+                    'Tur kuliner di pasar Ubud atau Seminyak.',
+                    'Mencicipi bebek betutu atau babi guling.',
+                    'Eksplorasi dessert tradisional seperti es dawet.'
+                ],
+                culture: [
+                    'Mengunjungi pura Uluwatu, Tanah Lot, dan Tirtha Empul.',
+                    'Tur ke istana Ubud dan museum seni.',
+                    'Menjelajahi desa-desa seni (Celuk, Mas, Ubud).',
+                    'Menyaksikan tarian Kecak atau Legong.'
+                ],
+                nature: [
+                    'Jalan pagi di sawah Tegalalang atau Jatiluwih.',
+                    'Trekking ke Gunung Batur (sunrise).',
+                    'Bersepeda di sekitar Ubud atau pantai Sanur.',
+                    'Sunset di pantai Uluwatu atau Jimbaran.'
+                ],
+                anime: [
+                    'Mengunjungi toko merchandise di Seminyak atau Kuta.',
+                    'Tur ke kafe bertema Jepang atau pop culture.',
+                    'Menjelajahi distrik game dan arcade di Denpasar.',
+                    'Mengikuti event cosplay atau komunitas lokal.'
+                ],
+                hidden: [
+                    'Jelajahi desa wisata di Sidemen atau Tenganan.',
+                    'Mengunjungi air terjun tersembunyi di sekitar Ubud.',
+                    'Menemukan kafe organik di area Canggu.',
+                    'Mencicipi makanan Bali autentik di warung lokal.'
+                ],
+                shopping: [
+                    'Belanja di pasar Ubud, Seminyak, atau Kuta.',
+                    'Mencari barang kerajinan tangan di desa Celuk/Mas.',
+                    'Mengunjungi butik pakaian dan aksesori lokal.',
+                    'Berburu oleh-oleh khas seperti lukisan atau perak.'
+                ]
+            }
+        },
+        'Seoul': {
+            label: '🇰🇷 Seoul',
+            currency: 'KRW',
+            tips: [
+                'Gunakan T-money card untuk transportasi.',
+                'Pelajari beberapa frasa dasar Bahasa Korea.',
+                'Coba makanan jalanan di pasar malam.',
+                'Hormati budaya dengan membungkuk saat menyapa.'
+            ],
+            hiddenSpots: ['Seongsu-dong', 'Ikseon-dong', 'Mangwon-dong', 'Hongdae'],
+            activities: {
+                culinary: [
+                    'Sarapan dengan kimbap atau tteokguk.',
+                    'Tur kuliner di Gwangjang Market atau Myeongdong.',
+                    'Mencicipi kimchi jjigae, bulgogi, atau bibimbap.',
+                    'Eksplorasi dessert Korea seperti bingsu atau hotteok.'
+                ],
+                culture: [
+                    'Mengunjungi Istana Gyeongbokgung dan Bukchon Hanok.',
+                    'Tur ke museum nasional dan sejarah Korea.',
+                    'Menjelajahi kuil-kuil di pusat kota.',
+                    'Menyaksikan pertunjukan Nanta atau tari tradisional.'
+                ],
+                nature: [
+                    'Jalan pagi di Cheonggyecheon atau Taman Namsan.',
+                    'Trekking di Bukhansan atau Inwangsan.',
+                    'Bersepeda di sepanjang Sungai Han.',
+                    'Melihat pemandangan dari N Seoul Tower.'
+                ],
+                anime: [
+                    'Mengunjungi toko merchandise di Myeongdong atau Hongdae.',
+                    'Tur ke kafe bertema anime atau game di Hongdae.',
+                    'Menjelajahi distrik game di Jongno atau Gangnam.',
+                    'Mengikuti workshop ilustrasi atau meetup komunitas.'
+                ],
+                hidden: [
+                    'Jelajahi lorong-lorong vintage di Seongsu-dong.',
+                    'Mengunjungi kafe tua di Ikseon-dong.',
+                    'Menemukan restoran tersembunyi di Mangwon-dong.',
+                    'Mencicipi makanan rumahan di pasar tradisional.'
+                ],
+                shopping: [
+                    'Belanja di Myeongdong, Dongdaemun, dan Gangnam.',
+                    'Mencari barang fashion di Hongdae atau Ewha.',
+                    'Mengunjungi pasar loak atau toko second-hand.',
+                    'Berburu oleh-oleh khas di toko kerajinan Insadong.'
+                ]
+            }
+        }
+    };
 
-            generateBtn.addEventListener('click', generatePlan);
+    // Label untuk tampilan
+    const budgetLabel = {
+        budget: '💰 Hemat (Budget)',
+        'mid-range': '💵 Menengah (Mid-range)',
+        luxury: '💎 Mewah (Luxury)'
+    };
 
-        })();
-    </script>
-</body>
-</html>
+    const vibeLabel = {
+        relaxed: '🌴 Santai (Relaxed)',
+        moderate: '🚶 Moderate (seimbang)',
+        intense: '🏃 Intense (padat)'
+    };
+
+    const interestLabel = {
+        culinary: '🍜 Kuliner & Street Food',
+        culture: '🏛️ Budaya & Sejarah',
+        nature: '🌿 Alam & Outdoor',
+        anime: '🎌 Anime & Pop Culture',
+        hidden: '🔍 Hidden Gems',
+        shopping: '🛍️ Belanja & Fashion'
+    };
+
+    // ---------- FUNGSI GENERATE YANG DIPERBAIKI ----------
+    function generatePlan() {
+        // Ambil nilai dari form
+        const destKey = document.getElementById('destination').value || 'Singapore';
+        const duration = parseInt(document.getElementById('duration').value, 10) || 4;
+        const budget = document.getElementById('budget').value || 'mid-range';
+        const vibe = document.getElementById('vibe').value || 'moderate';
+        const interest = document.getElementById('interest').value || 'culture';
+
+        // Ambil data destinasi
+        const dest = destinationData[destKey] || destinationData['Singapore'];
+        const activities = dest.activities[interest] || dest.activities.culture;
+        const hiddenSpots = dest.hiddenSpots || ['area lokal'];
+
+        // Bangun output
+        let output = '';
+        output += `📅 **Rencana ${duration} Hari di ${dest.label}**\n`;
+        output += `💰 Anggaran: ${budgetLabel[budget] || budget}\n`;
+        output += `🌟 Minat: ${interestLabel[interest] || interest}\n`;
+        output += `⚡ Ritme: ${vibeLabel[vibe] || vibe}\n\n`;
+
+        // Loop per hari
+        for (let i = 0; i < duration; i++) {
+            const dayNum = i + 1;
+            const activity = activities[i % activities.length];
+            
+            let extra = '';
+            if (i === 0) extra = ' (Hari tiba, check-in, mulai eksplorasi ringan)';
+            else if (i === duration - 1) extra = ' (Hari terakhir, persiapan pulang & oleh-oleh)';
+            else if (i === 1) extra = ' (Hari penuh eksplorasi)';
+            else if (i === 2) extra = ' (Jelajahi lebih dalam)';
+            
+            output += `**Hari ${dayNum}:**\n`;
+            output += `• ${activity}${extra}\n`;
+            
+            // Sisipkan hidden gem di hari ke-2 jika durasi >= 3
+            if (i === 1 && duration >= 3) {
+                const spot = hiddenSpots[dayNum % hiddenSpots.length];
+                output += `  💎 *Hidden Gem:* Cari warung kopi tua atau pasar lokal di ${spot}.\n`;
+            }
+            output += '\n';
+        }
+
+        // Tips penutup spesifik destinasi
+        output += `---\n💡 **Tips Lokal untuk ${dest.label}:**\n`;
+        dest.tips.forEach(tip => {
+            output += `• ${tip}\n`;
+        });
+
+        // Tampilkan ke result-content
+        resultContent.innerHTML = output.replace(/\n/g, '<br>');
+    }
+
+    // Event listener
+    generateBtn.addEventListener('click', generatePlan);
+
+    // Optional: generate otomatis saat load (agar langsung terlihat)
+    // generatePlan();
+
+})();
